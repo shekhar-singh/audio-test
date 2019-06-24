@@ -17,4 +17,4 @@ python manage.py migrate
 python manage.py runserver
 ```
 # audio-test
-
+https://gearheart.io/blog/how-to-upload-files-with-django/ handle file upload
