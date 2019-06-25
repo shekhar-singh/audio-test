@@ -4,6 +4,7 @@ from django.db import models
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from pydub import AudioSegment
 import os, sys
+from django.conf import settings
 
 class Document(models.Model):
     description = models.CharField(max_length=255, blank=True)
@@ -16,17 +17,30 @@ class Document(models.Model):
         super(Document, self).save(*args, **kwargs)   
 
     def compressAudio(self,document):
+    	#import ipdb;ipdb.set_trace()
     	raw_audio = AudioSegment.from_file(document, format="raw", frame_rate=44100, channels=2, sample_width=2)
         #imageTemproary = Image.open(uploadedImage)
-        outputIoStream = raw_audio.export("audio2.mp3", format="mp3")
+        name = document.name.split(".")[0].encode()
+        ext = document.name.split(".")[1].encode()
+
+        save_path = os.path.join(settings.MEDIA_ROOT, 'documents/')
+        outputIoStream = raw_audio.export(save_path+name+"."+ext, format=ext)
 
         print(outputIoStream,raw_audio,document)
+        outputIoStream.seek(0)
+
+        #<open file u'/home/shekhar/workspace/cloned/simple-file-upload/media/documents/file_example_WAV_2MG', mode 'wb+' at 0x7f343d1a0f60>
+
         #outputIoStream = BytesIO()
         #imageTemproaryResized = imageTemproary.resize( (1020,573) ) 
         #imageTemproary.save(outputIoStream , format='mp3')
         #outputIoStream.seek(0)
         #document = InMemoryUploadedFile(outputIoStream,'FileField',"audio1.mp3" 'audio/mp3', sys.getsizeof(outputIoStream), None)
-        return document
+
+        # save_path = os.path.join(settings.MEDIA_ROOT, 'documents', outputIoStream)
+        # path = default_storage.save(save_path, outputIoStream)
+        return outputIoStream.read()
+
 
     def get_size(self):
       	return self.document.size
