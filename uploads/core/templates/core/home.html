@@ -19,7 +19,7 @@
           <source src="{{ obj.document.url }}" type="audio/ogg">
 
         </audio> 
-        <h4>Size : {{ obj.document.size|filesizeformat}}  </h4>
+        <h4 style="color: red">Size : {{ obj.document.size|filesizeformat}}  </h4>
         <a href="{{ obj.document.url }}">{{ obj.document.name }} </a>
 
         <small>(Uploaded at: {{ obj.uploaded_at }})</small>

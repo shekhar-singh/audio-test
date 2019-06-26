@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 import os
-
+from pydub import AudioSegment
 from uploads.core.models import Document
-from uploads.core.forms import DocumentForm
+from uploads.core.forms import DocumentForm 
 
 
 def home(request):
@@ -23,12 +23,19 @@ def simple_upload(request):
         })
     return render(request, 'core/simple_upload.html')
 
+# def handle_uploaded_file(f):
+#     with open('some/file/name.txt', 'wb+') as destination:
+#         for chunk in f.chunks():
+#             destination.write(chunk)
 
 def model_form_upload(request):
     if request.method == 'POST':
+        import ipdb;ipdb.set_trace()
         form = DocumentForm(request.POST, request.FILES)
         print(request.FILES)
         if form.is_valid():
+            print(request.FILES['document'].name)
+            #handle_uploaded_file(request.FILES['file'])
             form.save()
             return redirect('home')
     else:
