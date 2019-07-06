@@ -2,7 +2,7 @@
 ## Running Locally
 
 ```bash
-git clone https://github.com/sibtc/simple-file-upload.git
+git clone 
 ```
 
 ```bash
