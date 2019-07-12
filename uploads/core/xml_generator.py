@@ -14,3 +14,11 @@ def my_xml(request):
     myfile = File(f)
     myfile.write(data)
     myfile.close()
+    
+ #another way
+import xml.etree.cElementTree as ET
+root = ET.Element("Response")
+ET.SubElement(root, "Say", voice="alice").text = "Thanks for trying our documentation. Enjoy!"
+ET.SubElement(root, "Play").text="http://demo.twilio.com/docs/classic.mp3"
+tree = ET.ElementTree(root)
+tree.write("filename.xml")
