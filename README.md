@@ -2,7 +2,7 @@
 ## Running Locally
 
 ```bash
-git clone 
+git clone this repo
 ```
 
 ```bash
@@ -17,5 +17,12 @@ python manage.py migrate
 python manage.py runserver
 ```
 # audio-test
-https://gearheart.io/blog/how-to-upload-files-with-django/ handle file upload
-https://stackabuse.com/asynchronous-tasks-in-django-with-redis-and-celery/  celery ex
+
+
+ 	celery -A uploads worker -l DEBUG -E
+
+    celery -A uploads beat -l info
+
+    celery -A uploads purge
+
+    celery flower -A uploads --address=127.0.0.1 --port=5555
