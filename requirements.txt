@@ -2,7 +2,7 @@ Django==1.9.8
 amqp==2.5.0
 backports.shutil-get-terminal-size==1.0.0
 billiard==3.6.0.0
-celery==4.3.0
+celery==5.2.2
 decorator==4.4.0
 Django==1.11.21
 enum34==1.1.6
@@ -28,7 +28,7 @@ wcwidth==0.1.7
 amqp==2.5.0
 backports.shutil-get-terminal-size==1.0.0
 billiard==3.6.0.0
-celery==4.3.0
+celery==5.2.2
 decorator==4.4.0
 Django==1.11.21
 enum34==1.1.6
